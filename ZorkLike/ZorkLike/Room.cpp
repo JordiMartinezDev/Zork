@@ -5,17 +5,17 @@ using namespace std;
 
 Room::Room(const char* roomName,const char* roomDescription)
 {
-	name = (*roomName);
-	description = (*roomDescription);
+	name = roomName;
+	description = roomDescription;
 }
 
-void Room::lookAt()
+void Room::lookAt()const
 {
 	cout << "\n\n " << name << " :\n\n" << description;
 	
 }
 
-void Room::lookAt(const char* direction)
+void Room::lookAt(const char* direction)const
 {
 
 }

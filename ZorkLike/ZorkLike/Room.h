@@ -4,14 +4,15 @@
 class Room
 {
 	public:
-		Room(const char* roomName,const char* roomDescription);
+		Room(const char* roomName, const char* roomDescription);
 		~Room();
 
-		void lookAt();
-		void lookAt(const char* direction);
+		void lookAt() const;
+		void lookAt(const char* direction) const;
 	    
+
 	private:
-		char name, description;
+		const char* name, *description;
 		
 		
 		
