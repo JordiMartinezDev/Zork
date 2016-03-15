@@ -1,3 +1,5 @@
+#include "Room.h"
+
 #ifndef _EXIT_H
 #define _EXIT_H
 
@@ -12,10 +14,19 @@ enum Direction
 class Exit
 {
 	public:
-		Exit(const Direction exitDirection,Room* nextRoom,const Direction returnDirection,Room* returnRoom,const char* description,bool locked);
 
+		Exit(const Direction exitDirection,Room* roomAt, Room* nextRoom, const char* description, bool bothDir, bool locked);
 		~Exit();
+
+		bool checkExit(const Direction dir, Room* roomAt)const;
+		void lookAt(const Direction dir, Room* roomAt)const;
+
 	private:
+		const char* description;
+		Room* roomTo,*roomAt;
+		Direction dirTo;
+		bool locked,bothDir;
+
 };
 
 

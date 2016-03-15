@@ -9,6 +9,11 @@ Room::Room(const char* roomName,const char* roomDescription)
 	description = roomDescription;
 }
 
+Room::~Room()
+{
+
+}
+
 void Room::lookAt()const
 {
 	cout << "\n\n " << name << " :\n\n" << description;
