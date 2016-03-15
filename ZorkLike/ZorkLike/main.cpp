@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
 	char userInput[30];
-	
+	bool playing;
 	cout << "This is a Zork like game, are you ready for this adventure?\n\n";
 	cout << "Type help to see commands available\n\n> ";
 	
@@ -18,9 +18,9 @@ int main()
 		
 		cin.getline(userInput, 30);
 		
-		myWorld.inputManagement(userInput);
+		playing = myWorld.inputManagement(userInput);
 		cout << "> ";
-	} while (userInput != "quit");
+	} while (playing);
 	
 	system("PAUSE");
 

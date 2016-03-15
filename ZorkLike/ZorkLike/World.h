@@ -15,7 +15,7 @@ class World
 		World();
 		~World();
 
-		void inputManagement(char* input) const;
+		bool inputManagement(char* input) const;
 		bool checkExit(Direction dir) const;
 	private:
 

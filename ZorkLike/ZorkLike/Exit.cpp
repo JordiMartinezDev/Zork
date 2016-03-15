@@ -17,9 +17,13 @@ Exit::~Exit()
 
 bool Exit::checkExit(Direction dir,Room* roomAt) const // continue here, look at world's call to this funcion...
 {
-	if (roomAt == this->roomAt && dir == dirTo);
+	if (roomAt == this->roomAt && dir == dirTo)
+	{
+		*roomAt = *roomTo;
+		return true;
+	}
 
-	return true;
+	return false;
 }
 void Exit::lookAt(const Direction dir, Room* roomAt)const
 {

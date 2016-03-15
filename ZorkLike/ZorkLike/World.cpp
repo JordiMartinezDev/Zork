@@ -91,49 +91,50 @@ World::~World()
 	
 }
 
-void World::inputManagement(char* input)const
+bool World::inputManagement(char* input)const
 {
-	char* secondWord;
-	char* firstWord = strtok_s(input, " ",&secondWord);
-
+	char* tmp2Word;
+	char* tmpWord = strtok_s(input, " ",&tmp2Word);
+	string firstWord = tmpWord;
+	string secondWord = tmp2Word;
 	//			--- 1 word input ---
 
-	if (*secondWord == *"")
+	if (secondWord == "")
 	{
-		if (*firstWord == *"help") cout << "\n Commands :\n\n quit\n look\n go\n open\n close\n quit\n help\n go\n north,south,east,west or n,s,e,w\n\n ";
-		else if (*firstWord == *"open") cout << "this wants to open something";
-		else if (*firstWord == *"close");
-		else if (*firstWord == *"quit");
-		else if (*firstWord == *"look");
-		else if (*firstWord == *"exits");
-		else if (*firstWord == *"n" || *firstWord == *"north") checkExit(north);
-		else if (*firstWord == *"s" || *firstWord == *"south") checkExit(south);
-		else if (*firstWord == *"w" || *firstWord == *"west") checkExit(west);
-		else if (*firstWord == *"e" || *firstWord == *"east") checkExit(east);
+		if (firstWord == "help") cout << "\n Commands :\n\n quit\n look\n go\n open\n close\n quit\n help\n go\n north,south,east,west or n,s,e,w\n\n ";
+		else if (firstWord == "open") cout << "this wants to open something";
+		else if (firstWord == "close");
+		else if (firstWord == "quit") return false;  // Player wants to quit
+		else if (firstWord == "look") currentRoom->lookAt();
+		else if (firstWord == "exits");
+		else if (firstWord == "n" || firstWord == "north") checkExit(north);
+		else if (firstWord == "s" || firstWord == "south") checkExit(south);
+		else if (firstWord == "w" || firstWord == "west") checkExit(west);
+		else if (firstWord == "e" || firstWord == "east") checkExit(east);
 	}
 
 	//			---- 2 Words input ----
 
 	//		---- look ----
-	else if (*firstWord == *"look")
+	else if (firstWord == "look")
 	{
-		if (*secondWord == *"north") currentRoom->lookAt();
-		if (*secondWord == *"south") currentRoom->lookAt();
-		if (*secondWord == *"east") currentRoom->lookAt();
-		if (*secondWord == *"west") currentRoom->lookAt();
+		if (secondWord == "north") currentRoom->lookAt();
+		if (secondWord == "south") currentRoom->lookAt();
+		if (secondWord == "east") currentRoom->lookAt();
+		if (secondWord == "west") currentRoom->lookAt();
 	}
 
 	//		---- go ----
-	else if (*firstWord == *"go")
+	else if (firstWord == "go")
 	{
-		if (*secondWord == *"north" || *secondWord == *"n") checkExit(north);
-		if (*secondWord == *"south" || *secondWord == *"s") checkExit(south);
-		if (*secondWord == *"east" || *secondWord == *"e") checkExit(east);
-		if (*secondWord == *"west" || *secondWord == *"w") checkExit(west);
+		if (secondWord == "north" || secondWord == "n") checkExit(north);
+		if (secondWord == "south" || secondWord == "s") checkExit(south);
+		if (secondWord == "east" || secondWord == "e") checkExit(east);
+		if (secondWord == "west" || secondWord == "w") checkExit(west);
 	}
 	
 
-	
+	return true;
 }
 
 bool World::checkExit( Direction dir)const
