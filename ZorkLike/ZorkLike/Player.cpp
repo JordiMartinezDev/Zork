@@ -4,9 +4,9 @@
 #include "Exit.h"
 
 using namespace std;
-Player::Player(Room* roomAt)
+Player::Player()
 {
-	this->roomAt = roomAt;
+	
 }
 
 Player::~Player()

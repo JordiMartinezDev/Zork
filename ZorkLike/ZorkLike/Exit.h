@@ -1,5 +1,4 @@
 #include "Room.h"
-
 #ifndef _EXIT_H
 #define _EXIT_H
 
@@ -15,17 +14,17 @@ class Exit
 {
 	public:
 
-		Exit(const Direction exitDirection,Room* roomAt, Room* nextRoom, const char* description, bool bothDir, bool locked);
+		Exit(Room* roomAtTmp, const Direction exitDirection, Room* roomToTmp, const char* description, bool locked);
 		~Exit();
 
-		bool checkExit(const Direction dir, Room* roomAt)const;
+		bool checkExit(Direction dir, Room *roomAt);
 		void lookAt(const Direction dir, Room* roomAt)const;
 
 	private:
 		const char* description;
-		Room* roomTo,*roomAt;
+		Room* roomTo,roomAt;
 		Direction dirTo;
-		bool locked,bothDir;
+		bool locked;
 
 };
 

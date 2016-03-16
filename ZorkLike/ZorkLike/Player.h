@@ -6,12 +6,12 @@
 class Player
 {
 	public:
-		Player(Room* roomAt);
+		Player();
 		~Player();
 
 		void moveTo(Direction dir,Room* currentRoom)const;
 	private:
-		Room* roomAt;
+		
 };
 
 

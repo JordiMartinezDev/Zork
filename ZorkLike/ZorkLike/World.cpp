@@ -13,19 +13,19 @@ World::World()
 {
 	//         ------- Rooms creation -------
 
-	Room* hall = new Room("Hall", "Hall in the prison");
-	Room* wardensOffice = new Room("Warden's office", "Here is the warden of the prison");
+	Room* hall = new Room("Hall", "Hall in the prison",LOCKED);
+	Room* wardensOffice = new Room("Warden's office", "Here is the warden of the prison",LOCKED);
 
-	Room* sickRoom = new Room("Sick Room", "Patients are healed here");
-	Room* yard = new Room("Yard", "This is the yard of the prison");
-	Room* cell = new Room("Player's cell", "this is my cell");
+	Room* sickRoom = new Room("Sick Room", "Patients are healed here",UNLOCKED);
+	Room* yard = new Room("Yard", "This is the yard of the prison",UNLOCKED);
+	Room* cell = new Room("Player's cell", "this is my cell",LOCKED);
 
-	Room* entrance = new Room("Entrance", "Entrance of the prison ");
+	Room* entrance = new Room("Entrance", "Entrance of the prison ",LOCKED);
 
-	Room* forest = new Room("Forest", "Forest of the prison");
-	Room* lake = new Room("Lake", "Lake outside");
-	Room* house = new Room("House", "House here");
-
+	Room* forest = new Room("Forest", "Forest of the prison",UNLOCKED);
+	Room* lake = new Room("Lake", "Lake outside",UNLOCKED);
+	Room* house = new Room("House", "House here",UNLOCKED);
+	Room* emptyRoom = new Room("Entrance", "entrance of the prison", LOCKED);
 
 	// myRooms will free dyn memory used
 
@@ -38,55 +38,69 @@ World::World()
 	myRooms[6] = forest;
 	myRooms[7] = lake;
 	myRooms[8] = house;
+	myRooms[9] = emptyRoom;
 	
-	
+
 
 	//         ------- Exits creation -------
 
-	Exit* hallToWardensOffice = new Exit(north,hall,wardensOffice, "this is to wardens", BOTHSIDES, LOCKED);
+	Exit* hallToWardensOffice = new Exit(hall,north,wardensOffice, "this is to wardens", LOCKED);
+	Exit* wardensOfficeToHall = new Exit(wardensOffice, south, hall, "thi is to hall", LOCKED);
 
-	Exit* cellToHall = new Exit(north,cell, hall, "This way to hall", BOTHSIDES, UNLOCKED);
-	Exit* cellToSickRoom = new Exit(west,cell ,sickRoom, "This is to sickroom", BOTHSIDES, UNLOCKED);
-	Exit* cellToYard = new Exit(east,cell,yard, "this is to yard",BOTHSIDES, UNLOCKED);
+	Exit* cellToHall = new Exit(cell,north,hall, "This way to hall", UNLOCKED);
+	Exit* hallToCell = new Exit(hall, south, cell,"This is to cell", UNLOCKED);
+	Exit* cellToSickRoom = new Exit(cell,west,sickRoom, "This is to sickroom", UNLOCKED);
+	Exit* sickRoomToCell = new Exit(sickRoom, east, cell, "this is to cell", UNLOCKED);
+	Exit* cellToYard = new Exit(cell,east,yard, "this is to yard", UNLOCKED);
+	Exit* yardToCell = new Exit(yard, west, cell, "this is to cell", UNLOCKED);
+	Exit* emptyRoomToCell = new Exit(emptyRoom, north, cell, "This is to cell", UNLOCKED);
 
-	Exit* entranceToCell = new Exit(north,entrance,cell, "This way takes you to your cell", BOTHSIDES, UNLOCKED);
+	Exit* entranceToCell = new Exit(entrance,north,cell, "This way takes you to your cell", UNLOCKED);
+	Exit* cellToEntrance = new Exit(cell, south, entrance, "this is to entrance", UNLOCKED);
+	Exit* entranceToForest = new Exit(entrance,south,forest, "this is to get out of prison", LOCKED);
+	Exit* forestToEntrance = new Exit(forest, north, entrance, "this is to enter the prison", LOCKED);
+	Exit* forestToHouse = new Exit(forest,west,house, "This gets to house", UNLOCKED);
+	Exit* houseToForest = new Exit(house, east, forest, "this is to forest", UNLOCKED);
+	Exit* forestToLake = new Exit(forest,east,lake,"This gets to lake", UNLOCKED);
+	Exit* lakeToForest = new Exit(lake, west, forest, "this is to forest", UNLOCKED);
 
-	Exit* entranceToForest = new Exit(south,entrance,forest, "this is to get out of prison", BOTHSIDES, LOCKED);
-	
-	Exit* forestToHouse = new Exit(west,forest,house, "This gets to house", BOTHSIDES, UNLOCKED);
-	Exit* forestToLake = new Exit(east,forest,lake, "This gets to lake",BOTHSIDES, UNLOCKED);
-
-	Exit* cellToLake = new Exit(special,cell,lake, "scape from prison", ONESIDE, LOCKED);
+	Exit* cellToLake = new Exit(cell,special,lake, "scape from prison", LOCKED);
 
 	// myExits will free dyn memory used
 	
 	myExits[0] = hallToWardensOffice;
-	myExits[1] = cellToHall;
-	myExits[2] = cellToSickRoom;
-	myExits[3] = cellToYard;
-	myExits[4] = entranceToCell;
-	myExits[5] = entranceToForest;
-	myExits[6] = forestToHouse;
-	myExits[7] = forestToLake;
-	myExits[8] = cellToLake;
+	myExits[1] = wardensOfficeToHall;
+
+	myExits[2] = cellToHall;
+	myExits[3] = hallToCell;
+	myExits[4] = cellToSickRoom;
+	myExits[5] = sickRoomToCell;
+	myExits[6] = cellToYard;
+	myExits[7] = yardToCell;
+
+	myExits[8] = entranceToCell;
+	myExits[9] = cellToEntrance;
+	myExits[10] = entranceToForest;
+	myExits[11] = forestToEntrance;
+	myExits[12] = forestToHouse;
+	myExits[13] = houseToForest;
+	myExits[14] = forestToLake;
+	myExits[15] = lakeToForest;
+	myExits[16] = cellToLake;
 
 	//         ------- Player creation -------
 
-	Player* myPlayer = new Player(entrance);
+	Player* myPlayer = new Player();
 
-	currentRoom = entrance;
+	currentRoom = myRooms[9];// cell
 }
 
 World::~World()
 {
 	//         ------- Free dyn memory -------
 
-	for (int i = 0; i < 9; i++)
-	{
-		delete myRooms[i];
-		delete myExits[i];
-	}
-	
+	for (int i = 0; i < 10; i++) delete myRooms[i];
+	for (int i = 0; i < 17; i++) delete myExits[i];
 	delete myPlayer;
 	
 }
@@ -102,8 +116,8 @@ bool World::inputManagement(char* input)const
 	if (secondWord == "")
 	{
 		if (firstWord == "help") cout << "\n Commands :\n\n quit\n look\n go\n open\n close\n quit\n help\n go\n north,south,east,west or n,s,e,w\n\n ";
-		else if (firstWord == "open") cout << "this wants to open something";
-		else if (firstWord == "close");
+		else if (firstWord == "open") cout << "\n Type open door/gate to open it \n";
+		else if (firstWord == "close") cout << "\n Type close door/gate to close it\n";
 		else if (firstWord == "quit") return false;  // Player wants to quit
 		else if (firstWord == "look") currentRoom->lookAt();
 		else if (firstWord == "exits");
@@ -132,6 +146,16 @@ bool World::inputManagement(char* input)const
 		if (secondWord == "east" || secondWord == "e") checkExit(east);
 		if (secondWord == "west" || secondWord == "w") checkExit(west);
 	}
+	//		---- open ----
+	else if (firstWord == "open")
+	{
+		if (secondWord == "door" || secondWord == "gate") currentRoom->isDoor = false;
+	}
+	//		---- close ----
+	else if (firstWord == "close")
+	{
+		if (secondWord == "door" || secondWord == "gate") currentRoom->isDoor = true;
+	}
 	
 
 	return true;
@@ -139,13 +163,15 @@ bool World::inputManagement(char* input)const
 
 bool World::checkExit( Direction dir)const
 {
-	for (int i = 0; i < 9; i++)
+	for (int i = 0; i < 17; i++)
 	{
-		if (myExits[i]->checkExit(dir, currentRoom) == true)
+		if (myExits[i]->checkExit(dir, currentRoom) == true) 
 		{
-			myPlayer->moveTo(dir, currentRoom);
+			currentRoom->lookAt();
 			return true; // Player can move
 		}
 	}
+
+	cout << "\n There is nothing there, maybe another way\n\n";
 	return false; // Player can't move
 }

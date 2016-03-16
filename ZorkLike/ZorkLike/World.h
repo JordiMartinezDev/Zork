@@ -20,8 +20,8 @@ class World
 	private:
 
 		Room* currentRoom;
-		Room* myRooms[9];
-		Exit* myExits[9];
+		Room* myRooms[10];
+		Exit* myExits[17];
 		Player* myPlayer;
 
 };

@@ -1,28 +1,38 @@
-
 #include "Exit.h"
+#include <iostream>
+using namespace std;
 
-Exit::Exit(const Direction exitDirection,Room* roomAt ,Room* nextRoom, const char* description,bool bothDir, bool locked)
+Exit::Exit(Room* roomAtTmp, const Direction exitDirection, Room* roomToTmp, const char* description, bool locked)
 {
-	this->roomAt = roomAt;
-	roomTo = nextRoom;
+	roomAt = *roomAtTmp;
+	roomTo = roomToTmp;
 	dirTo = exitDirection;
 	this->description = description;
+	roomAt.isDoor = locked;
 	this->locked = locked;
-	this->bothDir = bothDir;
 }
 
 Exit::~Exit()
 {
 }
 
-bool Exit::checkExit(Direction dir,Room* roomAt) const // continue here, look at world's call to this funcion...
+bool Exit::checkExit(Direction dir,Room *roomAt) // continue here, look at world's call to this funcion...
 {
-	if (roomAt == this->roomAt && dir == dirTo)
-	{
-		*roomAt = *roomTo;
-		return true;
-	}
+	
 
+		if (roomAt->name == this->roomAt.name && dir == dirTo)
+		{
+			if (roomAt->isDoor && locked) 
+			{
+				cout << "\n This way is locked";
+				return false;
+			}
+			else
+			{
+				*roomAt = *roomTo;
+				return true;
+			}
+		}
 	return false;
 }
 void Exit::lookAt(const Direction dir, Room* roomAt)const

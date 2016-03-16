@@ -11,18 +11,17 @@ int main()
 	cout << "This is a Zork like game, are you ready for this adventure?\n\n";
 	cout << "Type help to see commands available\n\n> ";
 	
-	World myWorld;
-	
-
+	World* myWorld = new World();
 	do{
 		
 		cin.getline(userInput, 30);
+		if (*userInput != NULL) playing = myWorld->inputManagement(userInput);
 		
-		playing = myWorld.inputManagement(userInput);
 		cout << "> ";
 	} while (playing);
 	
 	system("PAUSE");
 
+	delete myWorld;
 	return 0;
 }
