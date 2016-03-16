@@ -11,19 +11,19 @@ World::World()
 {
 	//         ------- Rooms creation -------
 
-	Room* hall = new Room("Hall", " This is the hall, i can see a door in the NORTH of here, it says : Warden's office\n\n Will he be there..?",LOCKED);
-	Room* wardensOffice = new Room("Warden's office", " Here is the warden of the prison, SOUTH from here is the HALL ",LOCKED);
+	Room* hall = new Room("Hall", "\n\n This is the hall, i can see a door in the NORTH of here\n it says : Warden's office\n\n Will he be there..?",LOCKED);
+	Room* wardensOffice = new Room("Warden's office", "\n\n Here is the warden of the prison, SOUTH from here is the HALL ",LOCKED);
 
-	Room* sickRoom = new Room("Sick Room", " Patients are healed here... EAST from here is my CELL",UNLOCKED);
-	Room* yard = new Room("Yard", " This is the yard of the prison, WEST from here is my CELL",UNLOCKED);
-	Room* cell = new Room("Player's cell", " this is my cell\n NORTH from here is the HALL\n EAST from here is the YARD\n WEST from here is the SICK ROOM",LOCKED);
+	Room* sickRoom = new Room("Sick Room", "\n\n Patients are healed here... EAST from here is my CELL",UNLOCKED);
+	Room* yard = new Room("Yard", "\n\n This is the yard of the prison, WEST from here is my CELL",UNLOCKED);
+	Room* cell = new Room("Player's cell", " This is my cell\n\n NORTH from here is the HALL\n EAST from here is the YARD\n WEST from here is the SICK ROOM",LOCKED);
 
-	Room* entrance = new Room("Entrance", " Entrance of the prison\n SOUTH from here i can see a FOREST, the doors are closed.\n NORTH from here leads to my CELL ",LOCKED);
+	Room* entrance = new Room("Entrance", " Entrance of the prison\n\n SOUTH from here i can see a FOREST, the doors are closed.\n NORTH from here leads to my CELL ",LOCKED);
 
-	Room* forest = new Room("Forest", " Forest of the prison\n EAST from here is a LAKE",UNLOCKED);
-	Room* lake = new Room("Lake", " Lake outside\n WEST from here is a FOREST",UNLOCKED);
-	Room* house = new Room("House", " House here\n EAST from here is a FOREST",UNLOCKED);
-	Room* emptyRoom = new Room("Entrance", " Entrance of the prison\n SOUTH from here i can see a FOREST, the doors are closed.\n NORTH from here leads to my CELL ", LOCKED); 
+	Room* forest = new Room("Forest", " Forest of the prison\n\n EAST from here is a LAKE",UNLOCKED);
+	Room* lake = new Room("Lake", " Lake outside\n\n WEST from here is a FOREST",UNLOCKED);
+	Room* house = new Room("House", " House here\n\n EAST from here is a FOREST",UNLOCKED);
+	Room* emptyRoom = new Room("Entrance", " Entrance of the prison\n\n SOUTH from here i can see a FOREST, the doors are closed.\n NORTH from here leads to my CELL ", LOCKED); 
 	
 	// emptyRoom was created to solve a problem with movement, this needs to be fixed in the future
 
