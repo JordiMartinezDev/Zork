@@ -21,14 +21,14 @@ bool Exit::checkExit(Direction dir,Room *roomAt) // continue here, look at world
 	
 		if (roomAt->name == this->roomAt.name && dir == dirTo)
 		{
-			if (roomAt->isDoor && locked) 
+			if (roomAt->isDoor && locked) //Check if door 
 			{
 				cout << "\n This way is locked";
 				return true;
 			}
 			else
 			{
-				*roomAt = *roomTo;
+				*roomAt = *roomTo; // Here is when player MOVES
 				return true;
 			}
 		}

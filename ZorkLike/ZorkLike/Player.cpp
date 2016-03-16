@@ -13,9 +13,3 @@ Player::~Player()
 {
 
 }
-
-void Player::moveTo(Direction dir, Room* currentRoom)const
-{
-
-	cout << "you moved man!";
-}

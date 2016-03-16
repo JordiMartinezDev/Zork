@@ -9,7 +9,7 @@ class Player
 		Player();
 		~Player();
 
-		void moveTo(Direction dir,Room* currentRoom)const;
+		
 	private:
 		
 };

@@ -9,7 +9,7 @@ Room::Room(const char* roomName,const char* roomDescription,bool isLocked)
 	description = roomDescription;
 	isDoor = isLocked;
 }
-Room::Room()
+Room::Room() //Overloaded constructor needed when we create "empty" rooms
 {
 
 }
@@ -21,9 +21,4 @@ Room::~Room()
 void Room::lookAt()const
 {
 	cout << "\n\n " << name << " :\n\n" << description << "\n\n";
-}
-
-void Room::lookAt(const char direction)const
-{
-
 }

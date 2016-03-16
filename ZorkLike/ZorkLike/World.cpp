@@ -173,7 +173,7 @@ bool World::inputManagement(char* input)const
 	return true;
 }
 
-bool World::checkExit( Direction dir)const
+bool World::checkExit(Direction dir)const
 {
 	for (int i = 0; i < 17; i++)
 	{
