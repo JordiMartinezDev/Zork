@@ -16,3 +16,6 @@
 
  quit
  help
+
+
+ Everything should work, the only thing it doesn't is when we open a door, it doesn't stay opened until we close it. Ther rest should work as requiered.
