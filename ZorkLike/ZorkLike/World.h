@@ -17,6 +17,7 @@ class World
 
 		bool inputManagement(char* input) const;
 		bool checkExit(Direction dir) const;
+		void lookAt(Direction dir)const;
 	private:
 
 		Room* currentRoom;

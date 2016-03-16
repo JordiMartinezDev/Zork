@@ -18,7 +18,7 @@ class Exit
 		~Exit();
 
 		bool checkExit(Direction dir, Room *roomAt);
-		void lookAt(const Direction dir, Room* roomAt)const;
+		void lookAt()const;
 
 	private:
 		const char* description;

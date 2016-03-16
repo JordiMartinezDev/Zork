@@ -20,10 +20,10 @@ Room::~Room()
 
 void Room::lookAt()const
 {
-	cout << "\n\n " << name << " :\n\n" << description;
+	cout << "\n\n " << name << " :\n\n" << description << "\n\n";
 }
 
-void Room::lookAt(const char* direction)const
+void Room::lookAt(const char direction)const
 {
 
 }

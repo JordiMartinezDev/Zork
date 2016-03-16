@@ -19,13 +19,12 @@ Exit::~Exit()
 bool Exit::checkExit(Direction dir,Room *roomAt) // continue here, look at world's call to this funcion...
 {
 	
-
 		if (roomAt->name == this->roomAt.name && dir == dirTo)
 		{
 			if (roomAt->isDoor && locked) 
 			{
 				cout << "\n This way is locked";
-				return false;
+				return true;
 			}
 			else
 			{
@@ -35,7 +34,7 @@ bool Exit::checkExit(Direction dir,Room *roomAt) // continue here, look at world
 		}
 	return false;
 }
-void Exit::lookAt(const Direction dir, Room* roomAt)const
+void Exit::lookAt()const
 {
-
+	cout <<  description << "\n\n";
 }

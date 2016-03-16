@@ -9,7 +9,7 @@ class Room
 		~Room();
 
 		void lookAt() const;
-		void lookAt(const char* direction) const;
+		void lookAt(const char direction) const;
 		const char* name, *description;
 		bool isDoor;
 
